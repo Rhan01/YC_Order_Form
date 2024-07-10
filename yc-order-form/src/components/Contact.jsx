@@ -41,7 +41,7 @@ export default function Contact() {
         <div className="form">
           <div className="header">
             <div className="img">
-              <img src="./public/ycLogo.jpg" alt="company_logo" />
+              <img src="ycLogo.jpg" alt="company_logo" />
             </div>
             <div className="heading">
               <h2>YC Order Form</h2>
