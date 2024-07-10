@@ -1,0 +1,16 @@
+/* .container{}
+.card{}
+.form{}
+.header{}
+.formbox{} */
+
+.header .img {
+  width: 7%;
+}
+.img img {
+    padding: 5px;
+    border: 1px solid rgb(229, 229, 229);
+    width: 90%;
+    border-radius: 50%;
+}
+/* .formbox > .form{} */
