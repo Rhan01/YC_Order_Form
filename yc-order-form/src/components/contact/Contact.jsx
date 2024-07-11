@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Swal from "sweetalert2";
 import "./Contact.css";
-import * as XLSX from 'xlsx';
+import * as XLSX from "xlsx";
 
 export default function Contact() {
   const [result, setResult] = useState("");
@@ -42,7 +42,7 @@ export default function Contact() {
     "West Bengal",
   ];
   const loadingType = ["CKD", "SKD", "Full fitted", "By Driving"];
-
+  const tyres = ["CEAT", "MRF", "Any (CEAT/MRF)"];
   const onSubmit = async (event) => {
     event.preventDefault();
     setResult("Sending....");
@@ -52,21 +52,19 @@ export default function Contact() {
     // formData.forEach(function (value, key) {
     //   object[key] = value;
     // });
-    const json = JSON.stringify(object);
+    // const json = JSON.stringify(object);
 
-    const worksheet = XLSX.utils.json_to_sheet(json);
-    const workbook = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
+    // const worksheet = XLSX.utils.json_to_sheet(json);
+    // const workbook = XLSX.utils.book_new();
+    // XLSX.utils.book_append_sheet(workbook, worksheet, "Sheet1");
     //let buffer = XLSX.write(workbook, { bookType: "xlsx", type: "buffer" });
     //XLSX.write(workbook, { bookType: "xlsx", type: "binary" });
-    const file = XLSX.writeFile(workbook, "DataSheet.xlsx");
+    // const file = XLSX.writeFile(workbook, "DataSheet.xlsx");
 
     // console.log(formData.target)
 
     formData.append("access_key", "a051c910-2001-48c9-b242-2adafc927f38");
-    formData.append("attachment",file)
-
-
+    // formData.append("attachment", file);
 
     const response = await fetch("https://api.web3forms.com/submit", {
       method: "POST",
@@ -95,10 +93,14 @@ export default function Contact() {
   const modelSelect = () => {
     Swal.fire({
       position: "top-mid",
-      icon: "success",
-      title: "Your message has been sent",
+      icon: "warning",
+      title: "work is going on",
       showConfirmButton: false,
-      timer: 1500,
+      showDenyButton: true,
+  showCancelButton: true,
+  confirmButtonText: "Save",
+  denyButtonText: `Don't save`
+      // timer: 1500,
     });
   };
 
@@ -139,13 +141,22 @@ export default function Contact() {
                     </option>
                   ))}
                 </select>
-                <select name="Model" onCanPlay={modelSelect}>
-                  <select name="Model"></select>
-                  <select name="Color"></select>
-                  <select name="Model"></select>
+                <select name="Model" onClick={modelSelect}>
+                  <option value="">Select Model</option>
                 </select>
-                <textarea name="message"></textarea>
-
+                <select name="Tyres">
+                  <option value="">Tyres</option>
+                  {tyres.map((tyre) => (
+                    <option key={tyre} value={tyre}>
+                      {tyre}
+                    </option>
+                  ))}
+                </select>
+                <input type="date" name="Date" />
+                <textarea
+                  name="message"
+                  placeholder="Please write your message here..."
+                />
                 <button type="submit">Submit Form</button>
               </form>
               <span>{result}</span>
