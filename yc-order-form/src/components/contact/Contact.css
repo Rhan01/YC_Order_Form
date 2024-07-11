@@ -85,3 +85,11 @@ form button:hover{
   cursor: pointer;
   background: #1b1b1b;
 }
+@media screen and (min-width: 300px) and (max-width: 680px) {
+   .header .img{
+    width: 20%;
+  }
+  .form{
+    width: 100%;
+  }
+}
